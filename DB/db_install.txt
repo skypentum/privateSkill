@@ -1,0 +1,135 @@
+*********************************************
+STEP2> Create User
+*********************************************
+/mysql/bin/mysqlcheck -P3306 -h127.0.0.1 -S /tmp/pqms01.sock --auto-repair mysql
+
+/mysql/bin/mysql -uroot -p --port=3306 -D mysql -A --default-character-set=utf8 --socket=/tmp/pqms01.sock
+/*
+insert into user (host, user, password, ssl_cipher, x509_issuer, x509_subject) values('localhost', 'sktuser', password('QoS908Z!!'), '', null, null);
+
+insert into user (host, user, password) values('%', 'sktuser', password('QoS908Z!!'));
+
+flush privileges;
+*/
+*********************************************
+STEP3> Create DataBase & Grant
+*********************************************
+CREATE DATABASE skt_meta character set utf8;
+
+insert into db values('%', 'skt_meta', 'sktuser', 'y', 'y', 'y', 'y', 'y', 'y','y', 'y', 'y', 'y', 'y', 'y','y', 'y', 'y', 'y', 'y', 'y','y');
+
+flush privileges;
+
+grant all privileges on skt_meta.* to sktuser@"%" identified by "QoS908Z!!";
+
+grant all on *.* to 'sktuser'@'%' identified by 'QoS908Z!!' with grant option;
+
+grant all on *.* to 'sktuser'@'localhost' identified by 'QoS908Z!!' with grant option;
+
+grant all privileges on *.* to sktuser@"localhost" identified by "QoS908Z!!";
+
+flush privileges;
+
+CREATE DATABASE skt_onm character set utf8;
+
+CREATE DATABASE skt_map character set utf8;
+
+CREATE DATABASE skt_traffic character set utf8;
+
+CREATE DATABASE skt_temp character set utf8;
+
+CREATE DATABASE skt_alarm character set utf8;
+
+insert into db values('%', 'skt_onm', 'sktuser', 'y', 'y', 'y', 'y', 'y', 'y','y', 'y', 'y', 'y', 'y', 'y','y', 'y', 'y', 'y', 'y', 'y','y');
+
+insert into db values('%', 'skt_map', 'sktuser', 'y', 'y', 'y', 'y', 'y', 'y','y', 'y', 'y', 'y', 'y', 'y','y', 'y', 'y', 'y', 'y', 'y','y');
+
+insert into db values('%', 'skt_traffic', 'sktuser', 'y', 'y', 'y', 'y', 'y', 'y','y', 'y', 'y', 'y', 'y', 'y','y', 'y', 'y', 'y', 'y', 'y','y');
+
+insert into db values('%', 'skt_temp', 'sktuser', 'y', 'y', 'y', 'y', 'y', 'y','y', 'y', 'y', 'y', 'y', 'y','y', 'y', 'y', 'y', 'y', 'y','y');
+
+insert into db values('%', 'skt_alarm', 'sktuser', 'y', 'y', 'y', 'y', 'y', 'y','y', 'y', 'y', 'y', 'y', 'y','y', 'y', 'y', 'y', 'y', 'y','y');
+
+flush privileges;
+
+grant all privileges on skt_onm.* to sktuser@"%" identified by "QoS908Z!!";
+
+grant all privileges on skt_map.* to sktuser@"%" identified by "QoS908Z!!";
+
+grant all privileges on skt_traffic.* to sktuser@"%" identified by "QoS908Z!!";
+
+grant all privileges on skt_temp.* to sktuser@"%" identified by "QoS908Z!!";
+
+grant all privileges on skt_alarm.* to sktuser@"%" identified by "QoS908Z!!";
+
+grant all privileges on mysql.* to sktuser@"%" identified by "QoS908Z!!";
+
+grant all privileges on mysql.* to sktuser@"localhost" identified by "QoS908Z!!";
+
+grant all privileges on information_schema.* to sktuser@"%" identified by "QoS908Z!!";
+
+grant all privileges on information_schema.* to sktuser@"localhost" identified by "QoS908Z!!";
+
+flush privileges;
+
+*********************************************
+STEP4> Restore
+*********************************************
+/mysql/bin/mysql -uroot -p --port=3306 -S /tmp/pqms01.sock -D skt_onm -A --default-character-set=utf8 < /home/skt/work/db_install/onm_db.sql
+
+/mysql/bin/mysql -uroot -p --port=3306 -S /tmp/pqms01.sock -D skt_onm -A --default-character-set=utf8 < /home/skt/work/db_install/onm_procedure.sql
+
+/mysql/bin/mysql -uroot -p --port=3306 -S /tmp/pqms01.sock -D skt_onm -A --default-character-set=utf8 < /home/skt/work/db_install/onm_trigger.sql
+
+
+/mysql/bin/mysql -uroot -p --port=3306 -S /tmp/pqms01.sock -D skt_meta -A --default-character-set=utf8 < /home/skt/work/db_install/meta_db.sql
+
+/mysql/bin/mysql -uroot -p --port=3306 -S /tmp/pqms01.sock -D skt_meta -A --default-character-set=utf8 < /home/skt/work/db_install/meta_procedure.sql
+
+/mysql/bin/mysql -uroot -p --port=3306 -S /tmp/pqms01.sock -D skt_meta -A --default-character-set=utf8 < /home/skt/work/db_install/meta_trigger.sql
+
+
+/mysql/bin/mysql -uroot -p --port=3306 -S /tmp/pqms01.sock -D skt_map -A --default-character-set=utf8 < /home/skt/work/db_install/map_db.sql
+
+/mysql/bin/mysql -uroot -p --port=3306 -S /tmp/pqms01.sock -D skt_map -A --default-character-set=utf8 < /home/skt/work/db_install/map_procedure.sql
+
+/mysql/bin/mysql -uroot -p --port=3306 -S /tmp/pqms01.sock -D skt_map -A --default-character-set=utf8 < /home/skt/work/db_install/map_trigger.sql
+
+
+/mysql/bin/mysql -uroot -p --port=3306 -S /tmp/pqms01.sock -D skt_alarm -A --default-character-set=utf8 < /home/skt/work/db_install/alarm_db.sql
+
+/mysql/bin/mysql -uroot -p --port=3306 -S /tmp/pqms01.sock -D skt_alarm -A --default-character-set=utf8 < /home/skt/work/db_install/alarm_procedure.sql
+
+/mysql/bin/mysql -uroot -p --port=3306 -S /tmp/pqms01.sock -D skt_alarm -A --default-character-set=utf8 < /home/skt/work/db_install/alarm_trigger.sql
+
+
+/mysql/bin/mysql -uroot -p --port=3306 -S /tmp/pqms01.sock -D skt_traffic -A --default-character-set=utf8 < /home/skt/work/db_install/traffic_db.sql
+
+/mysql/bin/mysql -uroot -p --port=3306 -S /tmp/pqms01.sock -D skt_traffic -A --default-character-set=utf8 < /home/skt/work/db_install/traffic_procedure.sql
+
+/mysql/bin/mysql -uroot -p --port=3306 -S /tmp/pqms01.sock -D skt_traffic -A --default-character-set=utf8 < /home/skt/work/db_install/traffic_trigger.sql
+
+
+*********************************************
+STEP5> AUTO Increment ¼³Á¤
+*********************************************
+SELECT CONCAT('alter table ', table_name, ' change ', column_name, ' ', column_name, ' ', data_type, ' AUTO_INCREMENT;') stmt
+FROM information_schema.columns 
+WHERE extra = 'auto_increment' AND table_schema like 'skt%'
+
+
+insert into db (Host, Db, User, Select_priv, Insert_priv, Update_priv, Delete_priv, Create_priv, Drop_priv, Grant_priv, References_priv, Index_priv, Alter_priv, Create_tmp_table_priv, Lock_tables_priv, Create_view_priv, Show_view_priv, Create_routine_priv, Alter_routine_priv, Execute_priv, Event_priv, Trigger_priv) values
+('localhost','skt_meta','sktuser','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y'),
+('localhost','skt_onm','sktuser','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y'),
+('localhost','skt_map','sktuser','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y'),
+('localhost','skt_traffic','sktuser','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y'),
+('localhost','skt_temp','sktuser','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y'),
+('localhost','mysql','sktuser','Y','Y','Y','Y','Y','Y','N','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y'),
+('localhost','skt_alarm','sktuser','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y'),
+('127.0.0.1','skt_meta','sktuser','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y'),
+('127.0.0.1','skt_onm','sktuser','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y'),
+('127.0.0.1','skt_map','sktuser','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y'),
+('127.0.0.1','skt_traffic','sktuser','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y'),
+('127.0.0.1','skt_temp','sktuser','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y'),
+('127.0.0.1','mysql','sktuser','Y','Y','Y','Y','Y','Y','N','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y'),
+('127.0.0.1','skt_alarm','sktuser','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y','Y');
