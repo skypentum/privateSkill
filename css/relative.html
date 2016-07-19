@@ -1,0 +1,51 @@
+<html>
+<head>
+    <style>
+        body div {
+            border: 1px solid;    
+        }
+        
+        .relative1 {
+          position: relative;
+          height: auto;
+          margin-top:10px;
+        }
+        
+        .relative4 {
+          position: relative;
+          display: inline-block;
+          width: 400px;
+          height: 100px;
+          left: 10px;
+        } 
+        
+        .relative5 {
+          position: relative;
+          display: inline-block;
+          float:left;
+          width: 400px;
+          height: 100px;
+          left: 10px;
+        } 
+    </style>
+</head>
+<body>
+    <div class="relative1">
+        <div class="relative4">
+            div1
+        </div>
+        <div class="relative4">
+            div2
+        </div>
+    </div>
+    
+    <div class="relative1">
+        <div class="relative5">
+            div1
+        </div>
+        <div class="relative5">
+            div2
+        </div>
+    </div>
+</body>
+</html>
