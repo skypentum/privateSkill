@@ -193,6 +193,7 @@ Percentages|  	N/A
  - left / right, top / bottom 으로 구성
  
  - 각 position 별로 정의 가능한 box offset은 다음과 같다.
+ 
   offset|static|relative|absolute|fixed
   ------------ | ------------- | ------------ | ------------- | ------------
  left|x|o|o|o
