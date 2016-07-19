@@ -1,6 +1,8 @@
 # CSS Position 
 
 ## 1. Spec
+spec | position
+------------ | -------------
 Value|  	static / relative / absolute / fixed / inherit
 Initial|  	static
 Applies to|  	all elements
@@ -192,6 +194,7 @@ Percentages|  	N/A
  
  - 각 position 별로 정의 가능한 box offset은 다음과 같다.
   |static|relative|absolute|fixed
+  ------------ | ------------- | ------------ | ------------- | ------------
  left|x|o|o|o
  top|x|o|o|o
  right|x|ㅁ|o|o
