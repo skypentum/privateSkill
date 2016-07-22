@@ -94,9 +94,9 @@ Percentages|  block의 width/height를 참조
  offset|static|relative|absolute|fixed
  ------------ | ------------- | ------------ | ------------- | ------------
  left|x|o|o|o
- top|x|o(단, 부모 요소가 있어야 함)|o|o
+ top|x|o(단, 부모 요소에 명시적인 height이 있어야 함)|o|o
  right|x|ㅁ|o|o
- bottom|x|ㅁ(단, 부모 요소가 있어야 함)|o|o
+ bottom|x|ㅁ(단, 부모 요소에 명시적인 height이 있어야 함)|o|o
  ```
  x - 적용 안됨, o - 적용됨, ㅁ - '-'로 처리됨
  ```
