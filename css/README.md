@@ -17,7 +17,7 @@ Percentages|  	N/A
  
  - default 값
  
- - 문서 또는 DOM의 위치를 지정하지 않음
+ - 문서 또는 요소의 위치를 지정하지 않음
  
  - box offset이 적용되지 않음
 
@@ -25,7 +25,7 @@ Percentages|  	N/A
 
 ### 2) relative
 
- - 문서 또는 static으로 정의한 DOM를 기준으로 계산하여 위치를 지정
+ - 문서 또는 static으로 정의한 요소를 기준으로 계산하여 위치를 지정
  
  - box offset 적용 가능
 
@@ -39,7 +39,7 @@ Percentages|  	N/A
   
  - box offset 적용 가능
  
- - 기본적으로 가장 가까운 상위 DOM을 기준으로 위치가 결정
+ - 기본적으로 가장 가까운 상위 요소를 기준으로 위치가 결정
    
    (상위 요소가 없으면 문서를 기준으로 설정)
 
@@ -51,7 +51,7 @@ Percentages|  	N/A
  
  - box offset 적용 가능
 
- - 상위 DOM의 영향을 받지 않음
+ - 상위 요소의 영향을 받지 않음
  
  - 무조건 문서를 기준으로 설정
 
@@ -93,9 +93,9 @@ Percentages|  block의 width/height를 참조
  offset|static|relative|absolute|fixed
  ------------ | ------------- | ------------ | ------------- | ------------
  left|x|o|o|o
- top|x|-|o|o
+ top|x|o(단, 부모 요소가 있어야 함)|o|o
  right|x|ㅁ|o|o
- bottom|x|-|o|o
+ bottom|x|ㅁ(단, 부모 요소가 있어야 함)|o|o
  ```
  x - 적용 안됨, o - 적용됨, ㅁ - '-'로 처리됨
  ```
@@ -181,8 +181,8 @@ Percentages|  	N/A
 ```
 [예제](http://codepen.io/skypentum/pen/NAYvVN?editors=1000)
  
- - display 적용 시 : 내부 DOM이 상대적인 위치로 배치되므로 부모 DOM이 내부 DOM에 설정한 범위를 알 수 있음
- - float 적용 시 : 내부 DOM이 떠있는 상태로 배치되므로 부모 DOM이 내부 DOM에 설정한 범위를 알 수 없음
+ - display 적용 시 : 내부 요소가 상대적인 위치로 배치되므로 부모 요소가 내부 요소에 설정한 범위를 알 수 있음
+ - float 적용 시 : 내부 요소가 떠있는 상태로 배치되므로 부모 요소가 내부 요소에 설정한 범위를 알 수 없음
  - soution : 
  
     1) 빈 element에 clear 속성 설정하여 처리
@@ -282,16 +282,16 @@ Percentages|  	N/A
  
  [예제](http://codepen.io/skypentum/pen/pbLAXP?editors=1000)
 
- - 절대적인 위치로 배치되는 경우 DOM이 상대적인 배치를 완전히 벗어나기 때문에 구조상 앞,뒤 요소에 아무런 영향을 미치지 않음
- - solution : 각 DOM별로 width/height 및 box offset을 통해 구성하여야 함
+ - 절대적인 위치로 배치되는 경우 요소가 상대적인 배치를 완전히 벗어나기 때문에 구조상 앞,뒤 요소에 아무런 영향을 미치지 않음
+ - solution : 각 요소별로 width/height 및 box offset을 통해 구성하여야 함
   
  [변경 후 예제](http://codepen.io/skypentum/pen/xOWLoJ?editors=1000)
 
 ## 4. 정리
- - position은 절대적인 위치(absolute/fixed)와 상대적인 위치(relative/)가 있음
- - 이 중 상대적인 위치는 일반적인 흐름과 float 상태로 배치가 가능
- - 절대적인 위치의 경우 float 속성은 none으로 평가가 되며, box offset 속성으로 position함
+ - position은 절대적인 위치(absolute/fixed)와 상대적인 위치(relative/static)가 있음
+ - 이 중 상대적인 위치는 display와 float 으로 배치가 가능
  - 상대적인 위치의 경우 float 속성 또는 display 속성에 따라 배치되며, float을 초기화 할 경우 clear 속성을 설정함
+ - 절대적인 위치의 경우 float 속성은 none으로 평가가 되며, box offset 속성으로 position함
 
 ## 참고 사이트
 ```
