@@ -1,6 +1,6 @@
-# Position 
+# Positioning 
 
-## 1. Potition 
+## 1. Position 
 
 ### 1.1. Spec
 spec | position
