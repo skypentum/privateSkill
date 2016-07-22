@@ -1,6 +1,8 @@
-# CSS Position 
+# Position 
 
-## 1. Spec
+## 1. Potition 
+
+### 1.1. Spec
 spec | position
 ------------ | -------------
 Value|  	static / relative / absolute / fixed / inherit
@@ -9,7 +11,7 @@ Applies to|  	all elements
 Inherited|  	no
 Percentages|  	N/A
 
-## 2. property
+### 1.2. property
 
 ### 1) static
  
@@ -55,16 +57,26 @@ Percentages|  	N/A
 
 [예제](http://codepen.io/skypentum/pen/RRrkOm?editors=1000)
 
-### cf)box offset
+## 2. box offset
 
- - position 으로 정의된 box의 위치를 지정해 주기 위한 속성
+### 2.1 spec
+
+spec|position
+Value|  	<length> | <percentage> | auto | inherit
+Initial|  	auto
+Applies to|  	positioned elements
+Inherited|  	no
+Percentages|  block의 width/height를 참조
+
+### 2.2 property
  
  - left / right, top / bottom 으로 구성
  
  - 각 position 별로 정의 가능한 box offset은 다음과 같다.
  
-  offset|static|relative|absolute|fixed
-  ------------ | ------------- | ------------ | ------------- | ------------
+ - length인 경우
+ offset|static|relative|absolute|fixed
+ ------------ | ------------- | ------------ | ------------- | ------------
  left|x|o|o|o
  top|x|o|o|o
  right|x|ㅁ|o|o
@@ -72,10 +84,49 @@ Percentages|  	N/A
  ```
  x - 적용 안됨, o - 적용됨, ㅁ - '-'로 처리됨
  ```
+ 
+ [예제](http://codepen.io/skypentum/pen/xOWQAw?editors=1000)
 
-## 3. 응용
+ - percentage인 경우
+ offset|static|relative|absolute|fixed
+ ------------ | ------------- | ------------ | ------------- | ------------
+ left|x|o|o|o
+ top|x|-|o|o
+ right|x|ㅁ|o|o
+ bottom|x|-|o|o
+ ```
+ x - 적용 안됨, o - 적용됨, ㅁ - '-'로 처리됨
+ ```
+ 
+ [예제](http://codepen.io/skypentum/pen/JKLZEY?editors=1000)
+ 
+## 3. display
 
-### 1) 상대적인 위치
+### 3.1 spec
+spec|position
+Value|  	inline / block / list-item / inline-block / table / inline-table / table-row-group / table-header-group / table-footer-group / table-row / table-column-group / table-column / table-cell / table-caption / none / inherit
+Initial|  	inline
+Applies to|  	all elements
+Inherited|  	no
+Percentages|  	N/A
+
+### 3.2 property
+ 
+ - inline : 기본 값, 인라인 박스로 만듬 
+ 
+ - none : 보이지 않음 
+ 
+ - block : 블록 박스로 만듬 (not inline)
+ 
+ - inline-block : block 박스로 만들어지나, inline 처럼 배치함
+ 
+ - table 관련 속성: table 요소에서 배치함
+  
+ - list-item : LI 요소에서 list로 배치함 
+ 
+## 4. 응용
+
+### 4.1 상대적인 위치
 ```
 <html>
 <head>
@@ -136,7 +187,7 @@ Percentages|  	N/A
 
 [변경 후 예제](http://codepen.io/skypentum/pen/OXvjZV?editors=1000)
 
-### 2) 절대적인 위치
+### 4.2 절대적인 위치
 ```
 <html>
 <head>
@@ -244,6 +295,7 @@ https://www.w3.org/TR/CSS2/visuren.html#propdef-position
 http://mkyoon.com/56
 http://aboooks.tistory.com/82
 http://blog.wystan.net/2009/01/12/relationships-between-position-float-display
+http://dev.epiloum.net/834
 ```
 
 
