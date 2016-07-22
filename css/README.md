@@ -75,6 +75,7 @@ Percentages|  block의 width/height를 참조
  - 각 position 별로 정의 가능한 box offset은 다음과 같다.
  
  - length인 경우
+ 
  offset|static|relative|absolute|fixed
  ------------ | ------------- | ------------ | ------------- | ------------
  left|x|o|o|o
@@ -88,6 +89,7 @@ Percentages|  block의 width/height를 참조
  [예제](http://codepen.io/skypentum/pen/xOWQAw?editors=1000)
 
  - percentage인 경우
+ 
  offset|static|relative|absolute|fixed
  ------------ | ------------- | ------------ | ------------- | ------------
  left|x|o|o|o
