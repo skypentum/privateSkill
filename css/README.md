@@ -128,7 +128,7 @@ Percentages|  	N/A
   
  - list-item : LI 요소에서 list로 배치함 
  
-## 4. 응용
+## 4. 조합
 
 ### 4.1 상대적인 위치
 ```
