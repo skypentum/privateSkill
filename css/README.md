@@ -62,6 +62,7 @@ Percentages|  	N/A
 ### 2.1 spec
 
 spec|position
+------------ | -------------
 Value|  	<length> | <percentage> | auto | inherit
 Initial|  	auto
 Applies to|  	positioned elements
@@ -106,6 +107,7 @@ Percentages|  block의 width/height를 참조
 
 ### 3.1 spec
 spec|position
+------------ | -------------
 Value|  	inline / block / list-item / inline-block / table / inline-table / table-row-group / table-header-group / table-footer-group / table-row / table-column-group / table-column / table-cell / table-caption / none / inherit
 Initial|  	inline
 Applies to|  	all elements
