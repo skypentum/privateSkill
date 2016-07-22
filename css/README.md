@@ -63,7 +63,7 @@ Percentages|  	N/A
 
 spec|position
 ------------ | -------------
-Value|  	<length> | <percentage> | auto | inherit
+Value|  	length / percentage / auto / inherit
 Initial|  	auto
 Applies to|  	positioned elements
 Inherited|  	no
