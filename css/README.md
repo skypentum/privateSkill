@@ -206,20 +206,12 @@ Percentages|  	N/A
           position: absolute;
           height: auto;
           margin-top:10px;
-          //width: 100%;
-          //height: 100px;
-          //top:10px;
-          //left: 0px;
         }
         
         .absolute1_2 {
           position: absolute;
           height: auto;
           margin-top:10px;
-          //width: 100%;
-          //height: 100px;
-          //top:110px;
-          //left: 0px;
         }
         
         .absolute2_1 {
@@ -227,7 +219,6 @@ Percentages|  	N/A
           display: inline-block;
           width: 400px;
           height: 100px;
-          //left: 0px;
         }
         
         .absolute2_2 {
@@ -235,7 +226,6 @@ Percentages|  	N/A
           display: inline-block;
           width: 400px;
           height: 100px;
-          //left: 400px;
         }
         
         .absolute3_1 {
@@ -243,7 +233,6 @@ Percentages|  	N/A
           float:left;
           width: 400px;
           height: 100px;
-          //left: 0px;
         } 
         
         .absolute3_2 {
@@ -251,12 +240,7 @@ Percentages|  	N/A
           float:left;
           width: 400px;
           height: 100px;
-          //left: 400px;
         } 
-        
-        .clear-class {
-            clear: left; // or both
-        }
     </style>
 </head>
 <body>
@@ -276,7 +260,6 @@ Percentages|  	N/A
         <div class="absolute3_2">
             div2
         </div>
-        <!--<p class="clear-class"></p>-->
     </div>
 </body>
 </html>
