@@ -4,7 +4,7 @@
  - 페이지의 모든 엘리먼트는 사각형 박스이다.
  - content / padding / border / margin으로 구성된 것을 칭함
 
- ![box-model](/images/box-model.PNG)
+ ![box-model](images/box-model.PNG)
 
 ## 2. 구성 요소
 
