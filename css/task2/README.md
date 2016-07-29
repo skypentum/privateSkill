@@ -46,14 +46,22 @@
  - margin / margin-top / margin-right / margin-bottom / margin-left로 구성
  
  [예제](http://codepen.io/skypentum/pen/pbKdxx?editors=1000)
-
-### 2.5 box modeling 시 전체 너비/높이
- - 전체 너비 : margin-right + border-right + padding-right + width + padding-left + border-left + margin-left
- - 전테 높이 : margin-top + border-top + padding-top + height + padding-bottom + border-bottom + margin-bottom 
  
-## 3. box modeling 시 고려 사항
+## 3. box modeling 계산
+ - 브라우저에서 html을 rendering 시 box model calcaulation이 발생
+ - 브라우저 계산 순서 : box model(엘리먼트 자체의 Metrics 계산) -> layout(normal flow) 
+ - css 계산 우선순위 : inline > 내부 css > 외부 css > borwser dafault
+ - layout 배치 후 float 또는 position에 따라 positioning 과정이 한번더 발생 함 (4번 예제 참고)
+   - float : box model -> normal flow -> floating
+   - relative : box model -> normal flow -> positioning
+   - absolute : box model -> positioning
+ - box modeling 계산 시 전체 너비 / 높이
+   - 전체 너비 : margin-right + border-right + padding-right + width + padding-left + border-left + margin-left
+   - 전테 높이 : margin-top + border-top + padding-top + height + padding-bottom + border-bottom + margin-bottom 
+ 
+## 4. box modeling 예제
 
-### 1) 상대적인 위치
+### 1) relative position
 ```
 <html>
 <head>
@@ -116,7 +124,7 @@
 
 [변경 후 예제](http://codepen.io/skypentum/pen/OXvjZV?editors=1000)
 
-### 2) 절대적인 위치
+### 2) absolute position
 ```
 <html>
 <head>
@@ -196,14 +204,57 @@
   
  [변경 후 예제](http://codepen.io/skypentum/pen/xOWLoJ?editors=1000)
 
-## 4. 정리
- - position은 절대적인 위치(absolute/fixed)와 상대적인 위치(relative/)가 있음
- - 이 중 상대적인 위치는 일반적인 흐름과 float 상태로 배치가 가능
+## 5. 정리
+ - box model : content / padding / border / margin으로 구성된 사각형 박스
+ - 브라우저에서 html을 rendering 시 box model calcaulation이 발생하며, float 또는 position에 따라 배치함
+ - position은 절대적인 위치(absolute/fixed)와 상대적인 위치(relative)가 있음
  - 절대적인 위치의 경우 float 속성은 none으로 평가가 되며, box offset 속성으로 position함
- - 상대적인 위치의 경우 float 속성 또는 display 속성에 따라 배치되며, float을 초기화 할 경우 clear 속성을 설정함 
+ - 상대적인 위치의 경우 display와 box offset에 따라 배치됨
+ - float의 경우 float 속성에 따라 배치되며, 이 후 float을 초기화 할 경우 clear 속성을 설정함 
+
+## cf) UI 최적화를 위한 방법
+
+### 1. reflow 또는 repaint를 가급적 적게 발생시킨다.
+ - reflow : 문서 내 노드들의 레이아웃, 포지션을 재계산 후 브라우져에 다시 배치함 
+ - repaint : 노드들의 포지션에 영향을 미치지 않고 스킨에 변화가 발생하여 다른 노드들의 스킨까지 검증함
+ - 기본적으로 reflow, repaint 처리는 브라우져에서 자동으로 처리하지만 개발자의 역량에 따라서 reflow를 여러번 발생 시킬 수 있어 퍼포먼스 측면에서 비용 낭비를 초래함
+ - 클래스 변화에 따른 스타일 변화를 원할 경우, 최대한 DOM 구조 상 끝단에 위치한 노드에 reflow를 처리함
+ 
+### 2. 인라인 스타일을 최대한 배제하라.
+ - 인라인 상에 스타일을 줄 경우 리플로우가 페이지 전체에 걸쳐 수차례 발생하므로, 외부 스타일의 클래스 조합으로 한번만 리플로우를 발생시킨다.
+
+### 3. CSS 하위 선택자는 필요한 만큼만 정리하라.
+ - 필요 이상의 css rule을 작성해 놓을 경우 퍼포먼스의 하락을 가져올 수 있으므로, 딱 필요한 선에서 핵심만을 짚는 css rule을 적용한다.
+ 
+### 4. position: relative 사용 시 주의할 점
+ - position을 relative로 설정한 경우 absolute나 float에 비해서 더 큰 비용을 가짐(randering 단계가 차이남)
+ - 반복되는 요소에 적용 시 퍼포먼스 하락이 발생할 가능성이 크다.
+
+### 5. 자바스크립트를 통해 스타일 변화를 주어야 할 경우, 가급적 한번에 처리하라
+```
+// inline style로 적용할 경우
+var toChange = document.getElementById('elem'); //reflow 발생 안함
+toChange.style.background = '#333'; //reflow 발생
+toChange.style.color = '#fff'; //reflow 발생
+toChange.style.border = '1px solid #ccc'; //reflow 발생
+
+// class style로 적용할 경우
+// CSS
+#elem { 
+	border:1px solid #000; color:#000; background:#ddd; 
+}
+.highlight { 
+	border-color:#00f; color:#fff; background:#333; 
+}
+
+// js
+document.getElementById('elem').className = 'highlight'; // reflow 발생
+```
  
 ## 참조 사이트
 ```
 https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Box_Model/Introduction_to_the_CSS_box_model
 http://nolboo.kim/blog/2013/07/22/beginners-guide-to-html-and-css-3-slash-10/
+https://lists.w3.org/Archives/Public/public-html-ig-ko/2011Sep/att-0031/Reflow_____________________________Tip.pdf
 ```
+
