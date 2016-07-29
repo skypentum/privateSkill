@@ -109,8 +109,10 @@
  - display 적용 시 : 내부 DOM이 상대적인 위치로 배치되므로 부모 DOM이 내부 DOM에 설정한 범위를 알 수 있음
  - float 적용 시 : 내부 DOM이 떠있는 상태로 배치되므로 부모 DOM이 내부 DOM에 설정한 범위를 알 수 없음
  - soution : 
-    1) 빈 element에 clear 속성 설정하여 처리
-    2) 가상 선택자(:after)를 이용하여 처리
+    
+	1) 빈 element에 clear 속성 설정하여 처리
+    
+	2) 가상 선택자(:after)를 이용하여 처리
 
 [변경 후 예제](http://codepen.io/skypentum/pen/OXvjZV?editors=1000)
 
@@ -127,20 +129,12 @@
           position: absolute;
           height: auto;
           margin-top:10px;
-          //width: 100%;
-          //height: 100px;
-          //top:10px;
-          //left: 0px;
         }
         
         .absolute1_2 {
           position: absolute;
           height: auto;
           margin-top:10px;
-          //width: 100%;
-          //height: 100px;
-          //top:110px;
-          //left: 0px;
         }
         
         .absolute2_1 {
@@ -148,7 +142,6 @@
           display: inline-block;
           width: 400px;
           height: 100px;
-          //left: 0px;
         }
         
         .absolute2_2 {
@@ -156,7 +149,6 @@
           display: inline-block;
           width: 400px;
           height: 100px;
-          //left: 400px;
         }
         
         .absolute3_1 {
@@ -164,7 +156,6 @@
           float:left;
           width: 400px;
           height: 100px;
-          //left: 0px;
         } 
         
         .absolute3_2 {
@@ -172,12 +163,7 @@
           float:left;
           width: 400px;
           height: 100px;
-          //left: 400px;
         } 
-        
-        .clear-class {
-            clear: left; // or both
-        }
     </style>
 </head>
 <body>
